@@ -31,8 +31,6 @@ jobs:
           cache: maven
           server-id: github
       - name: Build with Maven Wrapper
-        run: ./mvnw -B package
-      - name: Build with Maven Wrapper
         run: ./mvnw -B deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
