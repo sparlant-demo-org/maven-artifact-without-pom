@@ -31,7 +31,17 @@ jobs:
           cache: maven
           server-id: github
       - name: Build with Maven Wrapper
-        run: ./mvnw -B deploy
+        run: |
+          ./mvnw -B package
+          mvn deploy:deploy-file
+            -DgroupId=org.springframework.samples
+            -DartifactId=maven-artifact-without-pom
+            -Dversion=1.0.0
+            -DgeneratePom=false
+            -DrepositoryId=github 
+            -Dpackaging=java-source
+            -Dfile=maven-artifact-without-pom-1.0.0.jar
+            -Durl=https://maven.pkg.github.com/sparlant-demo-org/maven-artifact-without-pom
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_ACTOR: "action"
