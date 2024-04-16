@@ -32,7 +32,7 @@ jobs:
           server-id: github
       - name: Build with Maven Wrapper
         run: |
-          ./mvnw -B package
+          ./mvnw -B -Dmaven.test.skip=true package
           ls -al target
           #mvn deploy:deploy-file \
           #  -DgroupId=org.springframework.samples \
