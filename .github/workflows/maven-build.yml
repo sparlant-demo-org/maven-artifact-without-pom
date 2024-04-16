@@ -33,15 +33,22 @@ jobs:
       - name: Build with Maven Wrapper
         run: |
           ./mvnw -B package
-          mvn deploy:deploy-file \
-            -DgroupId=org.springframework.samples \
-            -DartifactId=maven-artifact-without-pom \
-            -Dversion=1.0.0 \
-            -DgeneratePom=false \
-            -DrepositoryId=github  \
-            -Dpackaging=java-source \
-            -Dfile=./target/maven-artifact-without-pom-1.0.0.jar \
-            -Durl=https://maven.pkg.github.com/sparlant-demo-org/maven-artifact-without-pom
+          ls -al target
+          #mvn deploy:deploy-file \
+          #  -DgroupId=org.springframework.samples \
+          #  -DartifactId=maven-artifact-without-pom \
+          #  -Dversion=1.0.0 \
+          #  -DgeneratePom=false \
+          #  -DrepositoryId=github  \
+          #  -Dpackaging=java-source \
+          #  -Dfile=./target/maven-artifact-without-pom-1.0.0.jar \
+          #  -Durl=https://maven.pkg.github.com/sparlant-demo-org/maven-artifact-without-pom
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_ACTOR: "action"
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-jar
+          path: ./target/maven-artifact-without-pom-1.0.0.jar
+      
