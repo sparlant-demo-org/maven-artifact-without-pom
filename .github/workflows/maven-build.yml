@@ -40,7 +40,7 @@ jobs:
             -DgeneratePom=false
             -DrepositoryId=github 
             -Dpackaging=java-source
-            -Dfile=maven-artifact-without-pom-1.0.0.jar
+            -Dfile=./target/maven-artifact-without-pom-1.0.0.jar
             -Durl=https://maven.pkg.github.com/sparlant-demo-org/maven-artifact-without-pom
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
